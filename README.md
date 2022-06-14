@@ -40,11 +40,45 @@ def magic_create(request):
             form.save()
             return redirect('../browse')
     content = {'form': form}
-    return render(request, 'Magic/magic_create.html', content)
+    return render(request, 'magic_create.html', content)
 ```
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/97501659/173529510-15a0547c-c5e5-42a4-8e99-c95cf7cbf4ef.gif)
 
 ## Viewing the Decks<br>
-Next, I created a template that would show which decks were created and stored in the database and display some of the information about the decks.
+Next, I created a template that would show which decks were created and stored in the database and display some of the information about the decks. I was able to extend the base.html and inherit the styling.
+```
+def magic_browse(request):
+    deck = Deck.Deck.all()
+    content = {
+        'deck': deck,
+    }
+    return render(request, 'magic_browse.html', content)
+```
+```
+{% extends "magic_base.html" %}
+
+{% block title %}Magic: The Gathering Deck Lists{% endblock %}
+
+{% block header %}View Deck Lists{% endblock %}
+
+{% block content %}
+
+        {% for deck in deck %}
+    <table class="deckTable">
+        <tr>
+            <th colspan="2"><a href="{% url 'magic_details' deck.id %}">{{ deck.commander }}</a><div class="title">{{ deck.title }}</div></th>
+        </tr>
+        <tr>
+            <td rowspan="2"><a href="{% url 'magic_details' deck.id %}"><img src="{{deck.image}}" alt="Commander Image" class="commanderImage"></a></td>
+            <td class="description">DESCRIPTION<br>{{ deck.description }}<a href="{% url 'magic_details' deck.id %}"> MORE...</a></td>
+        </tr>
+    </table>
+        {% endfor %}
+
+
+{% endblock %}
+```
+![viewdecks](https://user-images.githubusercontent.com/97501659/173531530-cd7ca19f-558f-4f34-a3e7-a7dc52c41331.gif)
 
 
 ## Viewing Deck Details and Comments<br>
