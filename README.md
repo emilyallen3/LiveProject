@@ -26,22 +26,35 @@ class Deck(models.Model):
     def __str__(self):
         return self.commander
 ```
+class DeckForm(ModelForm):
+    class Meta:
+        model = Deck
+        fields = '__all__'
+```
+def magic_create(request):
+    form = DeckForm(data=request.POST or None)
+    if request.method == 'POST':
+        if form.is_valid():
+            form.save()
+            return redirect('../browse')
+    content = {'form': form}
+    return render(request, 'Magic/magic_create.html', content)
+```
 
-
-# Viewing the Decks<br>
+## Viewing the Decks<br>
 Next, I created a template that would show which decks were created and stored in the database and display some of the information about the decks.
 
 
-# Viewing Deck Details and Comments<br>
+## Viewing Deck Details and Comments<br>
 When a user clicks on a deck on the View Decks page, they are brought to a Deck Details page that shows them more information about the deck. On this page I wanted to add the functionality to leave a comment associated with the specific deck. It's always great to get advice about decks from other players and learn about other potential card combinations that might go well in your deck. To do this I needed to create a Comment model and another form. I learned a lot through this process. In the Comment model I created a Foreign Key that corresponds to the Deck model - that way the comment would save to the specific deck. I researched a lot and asked my instructors for help. It felt so good when we were able to get it working the way I intended it to work. Instead of taking the user to a new page to leave a comment I created a pop-up modal using JavaScript.
 
-# Editing and Deleting Decks and Comments<br>
+## Editing and Deleting Decks and Comments<br>
 Next, I wanted to give the user the ability to edit and delete decks. I did this by getting the Deck primary key and returning the form that created the deck. There the user could make changes to the deck and save those changes. Also, on the edit page the user could select to delete the deck. Doing so would take the user to another page where they could confirm that they really did want to delete the deck from the database permanently. This functionality also inspired me to add the ability to delete comments. Again, I had to reference both the Comment primary key and the Deck primary key. I was able to get the Deck primary key by way of the Foreign Key in the Comment model. The ability to edit comments is a feature I was not able to complete during the two weeks but is a feature I would like to add in the future.
 
-# Connecting to the API<br>
+## Connecting to the API<br>
 Before this project I had very little understanding of an API. I knew I wanted to use it on my project, so I really threw myself into learning more about it. At first it was very complex and complicated, but after working with an instructor and really testing it out in my code I was finally able to get it working! I was so excited! I gained more confidence in myself that I can do this job. I can come up against difficult problems and persevere to find a solution. I used the Scryfall API. Scryfall is my favorite Magic: The Gathering website. It is a robust search engine of Magic Cards. I have found it so helpful when building decks.
 
-# Using the API<br>
+## Using the API<br>
 There is so much you can get out of the Scryfall API. On my app I opted for giving the user the ability to search for a card by name and getting the image of the card to appear. In the future I would like to add more integration with the API - such as giving the user the ability to select cards from the Scryfall database to add to their commander deck on the Create Deck Form. 
 
 # Conclusion<br>
