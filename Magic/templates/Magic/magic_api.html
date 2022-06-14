@@ -1,0 +1,29 @@
+{% extends "magic_base.html" %}
+
+{% block title %}Magic: The Gathering Deck Lists{% endblock %}
+
+{% block header %}Search for Magic Cards{% endblock %}
+
+{% block content %}
+        <form method="POST" action="{% url 'card_search' %}" class="myForm" autocomplete="off">
+            {% csrf_token %}
+            <h3>Card Search Brought to you by the Scryfall API: </h3>
+            <input name='card_name' placeholder="Search for: Card Name">
+            <button type="submit" onsubmit="card_search()" class="btnView">SEARCH</button>
+            <br>***Card name must be as close to the full card name as possible
+        </form>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+{% endblock %}
