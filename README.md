@@ -26,10 +26,12 @@ class Deck(models.Model):
     def __str__(self):
         return self.commander
 ```
+```
 class DeckForm(ModelForm):
     class Meta:
         model = Deck
         fields = '__all__'
+```
 ```
 def magic_create(request):
     form = DeckForm(data=request.POST or None)
