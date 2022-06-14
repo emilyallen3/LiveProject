@@ -12,7 +12,7 @@ This project was created using the Django framework. I used Python, sqlite3, Jav
 I knew I wanted the app to focus on creating and viewing a database of Commander Decks (100-card collections) and interact with an API to get more information about certain Magic Cards.
 
 ## Creating a Deck<br>
-After registering the app in the main settings, creating basic templates and styling with HTML and CSS, I made a Deck model and a form for creating a Deck. This form lets user the choose the commander of the deck (the card that sets the theme and color of the deck), give it a title, a description, and list out the other key cards that will go in the 100-card deck.
+After registering the app in the main settings, creating basic templates and styling with HTML and CSS, I made a Deck model and a form for creating a Deck. This form lets user the choose the commander of the deck (the card that sets the theme and color of the deck), give it a title, a description, list out the other key cards that will go in the 100-card deck, and paste in a link to an image of thier commander card.
 ```
 class Deck(models.Model):
     commander = models.CharField(max_length=50)
