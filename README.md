@@ -42,6 +42,7 @@ def magic_create(request):
     content = {'form': form}
     return render(request, 'Magic/magic_create.html', content)
 ```
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/97501659/173529510-15a0547c-c5e5-42a4-8e99-c95cf7cbf4ef.gif)
 
 ## Viewing the Decks<br>
 Next, I created a template that would show which decks were created and stored in the database and display some of the information about the decks.
