@@ -4,15 +4,28 @@ For two weeks I completed several user stories to create a functioning app focus
 I chose to create an app that can help Magic: The Gathering players keep track of their Commander Decks.
 In this README I will explain what features I included in the app using explanations, code snippets, and videos.
 
-# About the Live Project<br>
+## About the Live Project<br>
 This Live Project at the Tech Academy was unique because it simulated what it would be like to work on a development team. We had a sprint planning meeting, daily stand ups, and a sprint retrospective. The overall project had already been created before I joined in. I got hands-on experience with version control using Azure DevOps. The IDE I used was PyCharm. I was able to bounce ideas back and forth with instructors and learn from my peers and their code. The Live Project experience has prepared me in multiple ways to work as a contributing developer.
 
-# Creating the App<br>
+## Creating the App<br>
 This project was created using the Django framework. I used Python, sqlite3, JavaScript, CSS, and HTML. Because the project had already been created, I started by creating my own app within the main project. I chose to make an app about Magic: The Gathering because I am passionate about the game and enjoy playing it with my husband. It is a hobby we got into after we got married and it has brought us lots of fun and happiness during our marriage. 
 I knew I wanted the app to focus on creating and viewing a database of Commander Decks (100-card collections) and interact with an API to get more information about certain Magic Cards.
 
-# Creating a Deck<br>
+## Creating a Deck<br>
 After registering the app in the main settings, creating basic templates and styling with HTML and CSS, I made a Deck model and a form for creating a Deck. This form lets user the choose the commander of the deck (the card that sets the theme and color of the deck), give it a title, a description, and list out the other key cards that will go in the 100-card deck.
+```
+class Deck(models.Model):
+    commander = models.CharField(max_length=50)
+    title = models.CharField(max_length=50)
+    description = models.TextField(max_length=500)
+    key_pieces = models.TextField(max_length=1000)
+    image = models.CharField(max_length=1000)
+
+    Deck = models.Manager()
+
+    def __str__(self):
+        return self.commander
+```
 
 
 # Viewing the Decks<br>
